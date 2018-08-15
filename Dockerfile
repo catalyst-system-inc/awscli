@@ -19,3 +19,4 @@ RUN mkdir -p /aws && \
 
 WORKDIR /aws
 ENTRYPOINT ["aws"]
+
