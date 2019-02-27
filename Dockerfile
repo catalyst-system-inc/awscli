@@ -1,9 +1,12 @@
 FROM alpine:latest
 
-# 作成者情報
-MAINTAINER toshi <toshi@toshi.click>
-
 ENV LANG C.UTF-8
+
+# タイムゾーンの設定
+RUN apk --update add tzdata && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    apk del tzdata && \
+    rm -rf /var/cache/apk/*
 
 RUN apk --update add tzdata \
 	bash \
@@ -19,4 +22,3 @@ RUN mkdir -p /aws && \
 
 WORKDIR /aws
 ENTRYPOINT ["aws"]
-
